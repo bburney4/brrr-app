@@ -252,7 +252,7 @@ React.createElement("div",{style:{fontSize:30}},"🏠"),React.createElement("p",
 
 // LENDERS
 tb==="lenders"&&React.createElement("div",{className:"gr",style:{gridTemplateColumns:"repeat(auto-fit,minmax(260px,1fr))"}},
-Object.entries(LL).map(([k,l])=>React.createElement("div",{key:k,className:"lc"+(ip.ln===k?" act":""),onClick:()=>{up("ln",k)}},
+Object.entries(LL).map(([k,l])=>React.createElement("div",{key:k,className:"lc"+(ip.ln===k?" act":""),onClick:()=>{up("ln",k);sT("analyze")}},
 React.createElement("h3",{style:{fontSize:14,fontWeight:700,marginBottom:6}},l.nm),
 [["Rate",l.sp?Math.round(l.pr*100)+"/"+Math.round(l.rr*100)+"%":Math.round(l.pr*100)+"%"],
 ["Points",Math.round(l.pts*100)+"%"+(l.bf?" +"+Math.round(l.bf*100)+"% broker":"")],

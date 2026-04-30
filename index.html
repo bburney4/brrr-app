@@ -8,367 +8,289 @@
 <meta name="apple-mobile-web-app-title" content="BRRR">
 <meta name="theme-color" content="#292524">
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>">
-<title>BRRR Deal Analyzer — Hananiah Property Group</title>
+<title>BRRR Deal Analyzer</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'DM Sans','Helvetica Neue',sans-serif;background:linear-gradient(145deg,#fafaf9 0%,#f5f0eb 50%,#fafaf9 100%);min-height:100vh;padding:16px;-webkit-font-smoothing:antialiased}
+body{font-family:'DM Sans',sans-serif;background:linear-gradient(145deg,#fafaf9,#f5f0eb,#fafaf9);min-height:100vh;padding:12px;-webkit-font-smoothing:antialiased}
 input,select,button{font-family:inherit}
-.container{max-width:1200px;margin:0 auto}
-.grid{display:grid;gap:16px}
-.grid-main{grid-template-columns:1fr}
-@media(min-width:1024px){.grid-main{grid-template-columns:1fr 2fr}}
-.card{background:#fff;border-radius:16px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid #e7e5e4;padding:20px}
-.input{width:100%;padding:10px 12px;border-radius:8px;border:2px solid #d6d3d1;background:#fff;color:#1c1917;font-family:'DM Mono',monospace;font-size:14px;outline:none;transition:border-color .2s}
-.input:focus{border-color:#f59e0b;box-shadow:0 0 0 3px rgba(245,158,11,.15)}
-select.input{font-family:'DM Sans',sans-serif}
-.label{display:block;font-size:11px;font-weight:700;color:#78716c;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
-.btn{padding:10px 20px;border-radius:10px;font-weight:700;font-size:13px;border:none;cursor:pointer;transition:all .2s}
-.btn-dark{background:#292524;color:#fff}.btn-dark:hover{background:#44403c}
-.btn-light{background:#e7e5e4;color:#57534e}.btn-light:hover{background:#d6d3d1}
-.btn-indigo{background:#eef2ff;color:#4f46e5;padding:4px 10px;font-size:11px;border-radius:6px}
-.btn-indigo:hover{background:#e0e7ff}
-.badge{display:inline-block;padding:2px 8px;border-radius:99px;font-size:10px;font-weight:700;text-transform:uppercase}
-.badge-core{background:#d1fae5;color:#065f46}
-.badge-emerging{background:#fef3c7;color:#92400e}
-.badge-watch{background:#fee2e2;color:#991b1b}
-.row{display:flex;justify-content:space-between;align-items:center;padding:6px 12px;border-radius:8px}
-.row-highlight{background:#fafaf9}
-.mono{font-family:'DM Mono',monospace}
-.text-green{color:#059669}.text-red{color:#dc2626}.text-amber{color:#d97706}
-table{width:100%;border-collapse:collapse}
-th{text-align:left;padding:8px 6px;font-size:10px;font-weight:700;color:#78716c;text-transform:uppercase;border-bottom:2px solid #e7e5e4}
-td{padding:8px 6px;border-bottom:1px solid #f5f5f4;font-size:12px}
-tr:hover{background:#fafaf9}
-.warning-box{padding:8px 12px;background:#fef3c7;border-radius:8px;font-size:12px;color:#92400e;margin-top:8px}
-.note-box{padding:8px 12px;background:#fafaf9;border-radius:8px;font-size:12px;color:#57534e;margin-top:4px}
-.dollar-input{position:relative}.dollar-input span{position:absolute;left:12px;top:10px;color:#a8a29e;font-size:14px}
-.dollar-input input{padding-left:24px}
-.divider{border-top:1px solid #e7e5e4;margin:8px 0}
-@media(max-width:768px){body{padding:8px}.card{padding:16px;border-radius:12px}th,td{padding:6px 4px;font-size:10px}}
+.mx{max-width:1200px;margin:0 auto}
+.card{background:#fff;border-radius:14px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid #e7e5e4;padding:14px;margin-bottom:12px}
+.inp{width:100%;padding:9px 11px;border-radius:8px;border:2px solid #d6d3d1;background:#fff;color:#1c1917;font-family:'DM Mono',monospace;font-size:13px;outline:none}
+.inp:focus{border-color:#f59e0b}
+select.inp{font-family:'DM Sans',sans-serif}
+.lbl{display:block;font-size:10px;font-weight:700;color:#78716c;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.btn{padding:9px 16px;border-radius:10px;font-weight:700;font-size:12px;border:none;cursor:pointer}
+.btn-d{background:#292524;color:#fff}.btn-l{background:#e7e5e4;color:#57534e}
+.btn-i{background:#eef2ff;color:#4f46e5;padding:5px 10px;font-size:11px;border-radius:6px}
+.badge{display:inline-block;padding:2px 7px;border-radius:99px;font-size:9px;font-weight:700;text-transform:uppercase}
+.bc{background:#d1fae5;color:#065f46}.be{background:#fef3c7;color:#92400e}.bw{background:#fee2e2;color:#991b1b}
+.r{display:flex;justify-content:space-between;align-items:center;padding:4px 8px;border-radius:6px;font-size:12px}
+.rh{background:#fafaf9}
+.m{font-family:'DM Mono',monospace}
+.g{color:#059669}.rd{color:#dc2626}.am{color:#d97706}.blue{color:#4f46e5}
+.dv{border-top:1px solid #e7e5e4;margin:5px 0}
+.di{position:relative}.di span{position:absolute;left:10px;top:9px;color:#a8a29e;font-size:13px}.di input{padding-left:22px}
+.gr{display:grid;gap:12px}
+@media(min-width:1024px){.gm{grid-template-columns:1fr 2fr}}
+.warn{padding:6px 8px;background:#fef3c7;border-radius:6px;font-size:11px;color:#92400e;margin-top:5px}
+table{width:100%;border-collapse:collapse}th{text-align:left;padding:5px 3px;font-size:9px;font-weight:700;color:#78716c;text-transform:uppercase;border-bottom:2px solid #e7e5e4}td{padding:5px 3px;border-bottom:1px solid #f5f5f4;font-size:11px}
+.lc{border:2px solid #e7e5e4;border-radius:10px;padding:10px;cursor:pointer;margin-bottom:8px}.lc.act{border-color:#f59e0b;background:#fffbeb}
 </style>
 </head>
-<body>
-<div id="root"></div>
+<body><div id="root"></div>
 <script type="text/babel">
-const {useState,useEffect,useCallback} = React;
+const{useState,useEffect,useCallback}=React;
+const Z={
+"35211":{z:5,t:"core",n:"West Bham / Ensley",tr:"Stable",i:"➖",ar:"$80K-$130K",r1:1144,r2:1265,r3:1584,r4:1804,rk:"Wholesaler ARV inflation",md:102000},
+"35205":{z:8,t:"core",n:"Five Points / UAB",tr:"Strong",i:"🔥",ar:"$120K-$200K+",r1:1364,r2:1496,r3:1870,r4:2123,rk:"Higher purchase prices",md:228000},
+"35218":{z:2,t:"core",n:"Ensley / Titusville",tr:"Caution",i:"⚠️",ar:"$65K-$105K",r1:1034,r2:1133,r3:1419,r4:1617,rk:"Lowest payment zone",md:72000},
+"35206":{z:5,t:"core",n:"East Lake",tr:"Improving",i:"📈",ar:"$85K-$140K",r1:1144,r2:1265,r3:1584,r4:1804,rk:"Use 90-day comps",md:103000},
+"35212":{z:1,t:"emerging",n:"Woodlawn / Crestwood",tr:"Strong",i:"🔥",ar:"$90K-$150K",r1:1023,r2:1122,r3:1408,r4:1573,rk:"Gentrification inflating ARVs",md:110000},
+"35208":{z:3,t:"emerging",n:"Bush Hills / Wylam",tr:"Early",i:"🌱",ar:"$60K-$100K",r1:1078,r2:1177,r3:1474,r4:1672,rk:"Block-level risk varies",md:80000},
+"35215":{z:6,t:"emerging",n:"Center Point",tr:"Stable",i:"➖",ar:"$100K-$160K",r1:1265,r2:1386,r3:1738,r4:1969,rk:"Suburban - verify S8",md:150000},
+"35210":{z:5,t:"emerging",n:"Irondale",tr:"Improving",i:"📈",ar:"$110K-$180K",r1:1144,r2:1265,r3:1584,r4:1804,rk:"Cherry-pick under $120K",md:263000},
+"35222":{z:5,t:"watch",n:"Avondale",tr:"Strong",i:"🔥",ar:"$180K-$400K+",r1:1144,r2:1265,r3:1584,r4:1804,rk:"Already gentrified",md:373000},
+"35204":{z:1,t:"watch",n:"Fountain Heights",tr:"Early",i:"🌱",ar:"$45K-$85K",r1:1023,r2:1122,r3:1408,r4:1573,rk:"Highest vacancy",md:59000},
+"35221":{z:4,t:"watch",n:"Midfield",tr:"Stable",i:"➖",ar:"$70K-$110K",r1:1100,r2:1210,r3:1518,r4:1727,rk:"Limited deal flow",md:95000}};
 
-const ZIP_DATA = {
-  "35211":{zone:5,tier:"core",neighborhood:"West Birmingham / Ensley",trajectory:"Stable",icon:"➖",arvRange:"$80K–$130K",rent1:1144,rent2:1265,rent3:1584,rent4:1804,risk:"Wholesaler ARV inflation common — verify independently",flood:"Portions in AE flood zone",notes:"Core BRRR zip. Established deal flow. Strong S8 demand.",median:102000},
-  "35205":{zone:8,tier:"core",neighborhood:"Five Points / UAB / Southside",trajectory:"Strong",icon:"🔥",arvRange:"$120K–$200K+",rent1:1364,rent2:1496,rent3:1870,rent4:2123,risk:"Higher purchase prices — confirm deal clears 1.5x",flood:"Low",notes:"Highest S8 payment standard. UAB proximity reduces vacancy.",median:228000},
-  "35218":{zone:2,tier:"core",neighborhood:"Ensley / Titusville Adjacent",trajectory:"Caution",icon:"⚠️",arvRange:"$65K–$105K",rent1:1034,rent2:1133,rent3:1419,rent4:1617,risk:"Lowest payment zone. $165/mo less than Zone 5.",flood:"Verify per parcel",notes:"Tighter math. Only viable at significant acquisition discount.",median:72000},
-  "35206":{zone:5,tier:"core",neighborhood:"East Lake / South East Lake",trajectory:"Improving",icon:"📈",arvRange:"$85K–$140K",rent1:1144,rent2:1265,rent3:1584,rent4:1804,risk:"Rapid comp movement — use 90-day comps only",flood:"Lower risk",notes:"Preferred zip. East Lake revitalization. Stronger trajectory than 35211.",median:103000},
-  "35212":{zone:1,tier:"emerging",neighborhood:"Woodlawn / Crestwood",trajectory:"Strong",icon:"🔥",arvRange:"$90K–$150K",rent1:1023,rent2:1122,rent3:1408,rent4:1573,risk:"Zone 1 = lowest S8 rents. Gentrification inflating ARVs.",flood:"Low",notes:"STRONGEST gentrification signal. Woodlawn Entertainment District. Get in early.",median:110000},
-  "35208":{zone:3,tier:"emerging",neighborhood:"Ensley / Bush Hills / Wylam",trajectory:"Early Stage",icon:"🌱",arvRange:"$60K–$100K",rent1:1078,rent2:1177,rent3:1474,rent4:1672,risk:"Block-level risk varies. Some blocks strong, others distressed.",flood:"Verify per parcel",notes:"CrossPlex Village catalyst. Cheap entry. Higher S8 than 35218.",median:80000},
-  "35215":{zone:6,tier:"emerging",neighborhood:"Center Point / Roebuck",trajectory:"Stable",icon:"➖",arvRange:"$100K–$160K",rent1:1265,rent2:1386,rent3:1738,rent4:1969,risk:"Suburban feel — verify S8 demand compatibility.",flood:"Low",notes:"Zone 6 = $154/mo MORE than Zone 5. Suburban stability, lower crime.",median:150000},
-  "35210":{zone:5,tier:"emerging",neighborhood:"Irondale / Crestline Heights",trajectory:"Improving",icon:"📈",arvRange:"$110K–$180K",rent1:1144,rent2:1265,rent3:1584,rent4:1804,risk:"Median $263K — target distressed pockets under $120K only.",flood:"Low",notes:"Same Zone 5 rents. Irondale has own police/fire. Cherry-pick only.",median:263000},
-  "35222":{zone:5,tier:"watch",neighborhood:"Avondale / Lakeview",trajectory:"Strong",icon:"🔥",arvRange:"$180K–$400K+",rent1:1144,rent2:1265,rent3:1584,rent4:1804,risk:"Already gentrified. Median $372K. BRRR unlikely at current prices.",flood:"Low",notes:"WATCH ONLY. Prices have run. Only if severely distressed under $150K.",median:373000},
-  "35204":{zone:1,tier:"watch",neighborhood:"Fountain Heights / West End",trajectory:"Early Stage",icon:"🌱",arvRange:"$45K–$85K",rent1:1023,rent2:1122,rent3:1408,rent4:1573,risk:"Highest vacancy. Zone 1 = lowest rents. Crime concerns.",flood:"Moderate",notes:"SPECULATIVE. Cheap entry but Zone 1 rents. Not for first BRRR.",median:59000},
-  "35221":{zone:4,tier:"watch",neighborhood:"Midfield / McDonald Chapel",trajectory:"Stable",icon:"➖",arvRange:"$70K–$110K",rent1:1100,rent2:1210,rent3:1518,rent4:1727,risk:"Limited deal flow. Fewer comps = harder ARV verification.",flood:"Moderate",notes:"Zone 4 rents decent ($1,518 3BR). Low competition but limited exit.",median:95000},
-};
+const LL={
+n98s:{id:"n98s",nm:"Ninety8 (Split 12/18)",sh:"N98 Split",pr:.12,rr:.18,sp:true,pts:.05,sf:950,dp:250,uw:0,proc:0,adm:0,apr:0,insp:0,bf:0,tm:6,ltv:.75,noDp:false,rehUp:false,rehAdv:.5,drI:0,intRes:0,renPt:.025,maxRen:2,minPay:3,nt:"12% purchase / 18% rehab. 50% rehab at closing. $950 service + $250 doc."},
+n98f:{id:"n98f",nm:"Ninety8 (Flat 13%)",sh:"N98 Flat",pr:.13,rr:.13,sp:false,pts:.05,sf:950,dp:250,uw:0,proc:0,adm:0,apr:0,insp:0,bf:0,tm:6,ltv:.75,noDp:false,rehUp:false,rehAdv:0,drI:0,intRes:0,renPt:.025,maxRen:2,minPay:3,nt:"13% flat. 100% rehab held. 25% draw increments."},
+virgo:{id:"virgo",nm:"Virgo Funding",sh:"Virgo",pr:.12,rr:.12,sp:false,pts:.025,sf:0,dp:0,uw:420,proc:0,adm:0,apr:450,insp:200,bf:0,tm:12,ltv:.70,noDp:false,rehUp:false,rehAdv:0,drI:200,intRes:0,renPt:0,maxRen:0,minPay:0,nt:"12% IO. 2.5 pts. 12-mo term. 70% LTV. No prepay penalty. $200/draw."},
+altf:{id:"altf",nm:"Alternative Funds",sh:"Alt Funds",pr:.15,rr:.15,sp:false,pts:.04,sf:0,dp:1255,uw:1550,proc:995,adm:500,apr:0,insp:0,bf:.05,tm:3,ltv:.75,noDp:true,rehUp:true,rehAdv:1.0,drI:0,intRes:3,renPt:0,maxRen:0,minPay:0,nt:"15%. 4% pts rolled in + 5% broker. NO down payment. Full rehab upfront. 3-mo term."},
+novac:{id:"novac",nm:"Novac Lending",sh:"Novac",pr:.18,rr:.18,sp:false,pts:.04,sf:0,dp:0,uw:0,proc:0,adm:0,apr:0,insp:0,bf:0,tm:4,ltv:.636,noDp:false,rehUp:false,rehAdv:0,drI:0,intRes:0,renPt:0,maxRen:0,minPay:0,nt:"18% IO. 4% origination. 4-mo term. 63.6% ARV LTV."}};
 
-const LENDER={purchaseRate:.12,rehabRate:.18,ltvCap:.75,origination:.05,contingency:10000,refiRate:.075,refiTerm:30};
-const fmt=n=>new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0}).format(n);
-const pct=n=>(n*100).toFixed(2)+"%";
-
-function getVerdict(r){
-  if(r>=1.6)return{label:"✅ GO — STRONG",color:"#059669",bg:"#d1fae5",desc:"Full cash-out with buffer after hidden costs."};
-  if(r>=1.5)return{label:"✅ GO — TARGET",color:"#059669",bg:"#d1fae5",desc:"Cash-out covers hidden costs. Solid BRRR."};
-  if(r>=1.4)return{label:"⚠️ CONDITIONAL",color:"#d97706",bg:"#fef3c7",desc:"Paper positive but hidden costs likely eat it."};
-  if(r>=1.33)return{label:"❌ BELOW FLOOR",color:"#dc2626",bg:"#fee2e2",desc:"Capital trapped at refi."};
-  return{label:"⛔ DEAD",color:"#7f1d1d",bg:"#fecaca",desc:"Cash trapped. Walk away."};
-}
-
-function mp(principal,rate,years){const r=rate/12,n=years*12;if(r===0)return principal/n;return(principal*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1)}
+const f=n=>new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0}).format(n);
+const f2=n=>new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:2}).format(n);
+const pc=n=>(n*100).toFixed(2)+"%";
+function vd(r){if(r>=1.6)return{l:"✅ GO — STRONG",c:"#059669",bg:"#d1fae5",d:"Full cash-out after all costs."};if(r>=1.5)return{l:"✅ GO — TARGET",c:"#059669",bg:"#d1fae5",d:"Solid BRRR."};if(r>=1.4)return{l:"⚠️ CONDITIONAL",c:"#d97706",bg:"#fef3c7",d:"Hidden costs likely eat cash-out."};if(r>=1.33)return{l:"❌ BELOW FLOOR",c:"#dc2626",bg:"#fee2e2",d:"Capital trapped."};return{l:"⛔ DEAD",c:"#7f1d1d",bg:"#fecaca",d:"Walk away."};}
+function mP(p,r,y){const mr=r/12,n=y*12;if(mr===0)return p/n;return(p*mr*Math.pow(1+mr,n))/(Math.pow(1+mr,n)-1)}
 
 function App(){
-  const[inputs,setInputs]=useState({address:"",zip:"35211",sqft:"",bedrooms:"3",purchasePrice:"",rehabCost:"",arv:"",arvSource:"zillow",rehabBasis:"estimate",fears:false,propertyTax:"",insurance:"",refiRate:"7.5"});
-  const[results,setResults]=useState(null);
-  const[killers,setKillers]=useState([]);
-  const[saved,setSaved]=useState(()=>{try{return JSON.parse(localStorage.getItem('brrr_saved'))||[]}catch{return[]}});
-  const[tab,setTab]=useState("analyze");
+const[ip,si]=useState({ad:"",zp:"35211",sf:"1200",br:"3",pp:"",rh:"",av:"",as:"zillow",rb:"estimate",fe:false,tx:"",in_:"",rr:"7.5",ln:"n98s",rm:"4",ct:"10000"});
+const[rs,sR]=useState(null);const[kl,sK]=useState([]);
+const[sv,sS]=useState(()=>{try{return JSON.parse(localStorage.getItem('brrr3'))||[]}catch{return[]}});
+const[tb,sT]=useState("analyze");
+const zi=Z[ip.zp]||null;const L=LL[ip.ln];
+const rt=useCallback(()=>zi?zi[`r${ip.br}`]||0:0,[zi,ip.br]);
+const up=(k,v)=>si(p=>({...p,[k]:v}));
 
-  const zi=ZIP_DATA[inputs.zip]||null;
-  const rent=useCallback(()=>{if(!zi)return 0;return zi[`rent${inputs.bedrooms}`]||0},[zi,inputs.bedrooms]);
-  const up=(f,v)=>setInputs(p=>({...p,[f]:v}));
+const calc=useCallback(()=>{
+const pp=+ip.pp||0,rh=+ip.rh||0,av=+ip.av||0,tx=+ip.tx||0,ins=+ip.in_||0,rr=+ip.rr/100||.075,rm=+ip.rm||4,ct=+ip.ct||10000;
+if(!pp||!av){sR(null);return}
+const k=[];if(pp>av*.75)k.push("Purchase > 75% ARV");if(ip.fe)k.push("Fears Org ARV — verify");if(ip.rb==="none")k.push("No rehab estimate");sK(k);
 
-  const analyze=useCallback(()=>{
-    const pp=parseFloat(inputs.purchasePrice)||0,rehab=parseFloat(inputs.rehabCost)||0,arv=parseFloat(inputs.arv)||0;
-    const tax=parseFloat(inputs.propertyTax)||0,ins=parseFloat(inputs.insurance)||0;
-    const rate=parseFloat(inputs.refiRate)/100||.075;
-    if(!pp||!arv){setResults(null);return}
-    const k=[];
-    if(pp>arv*.75)k.push("Purchase price exceeds 75% of ARV before rehab");
-    if(inputs.fears)k.push("ARV source is The Fears Organization — require independent verification");
-    if(inputs.rehabBasis==="none")k.push("No contractor bid or estimate — rehab speculative");
-    setKillers(k);
-    const orig=pp*LENDER.origination,allIn=pp+rehab+LENDER.contingency+orig;
-    const ratio=arv/allIn,maxRefi=arv*LENDER.ltvCap,cashOut=maxRefi-allIn;
-    const mRent=rent(),aGross=mRent*12,vac=aGross*.05,noi=aGross-tax-ins-vac;
-    const mDebt=mp(maxRefi,rate,LENDER.refiTerm),aDebt=mDebt*12,aCF=noi-aDebt,mCF=aCF/12;
-    const cashLeft=cashOut<0?Math.abs(cashOut):0;
-    const coc=cashLeft>0?aCF/cashLeft:aCF>0?Infinity:0;
-    const capRate=arv>0?noi/arv:0,equity=arv-maxRefi;
-    const refiClose=maxRefi*.025,hold=(pp*LENDER.purchaseRate/12)*3+(ins/12*3)+(tax/12*3),pmS=500;
-    const totalHid=refiClose+hold+pmS,realCO=cashOut-totalHid;
-    const v=getVerdict(ratio);
-    const risks=[];
-    if(inputs.arvSource==="wholesaler")risks.push("ARV from wholesaler — cross-reference comps");
-    if(inputs.rehabBasis==="estimate")risks.push("Rehab estimate only — get contractor bid");
-    if(zi&&(zi.trajectory==="Caution"||zi.trajectory==="Early Stage"))risks.push(inputs.zip+" — cautious trajectory");
-    if(ratio>=1.5&&ratio<1.6)risks.push("Thin — 5% ARV miss drops below 1.50x");
-    if(realCO<0)risks.push(fmt(Math.abs(realCO))+" trapped after hidden costs");
-    if(cashOut>0&&realCO<0)risks.push("Paper positive but hidden costs make it negative");
-    if(mCF<100)risks.push("Cash flow below $100/mo — thin for maintenance");
-    setResults({pp,rehab,orig,allIn,arv,ratio,maxRefi,cashOut,mRent,aGross,vac,noi,tax,ins,mDebt,aDebt,aCF,mCF,coc,capRate,equity,v,risks,refiClose,hold,pmS,totalHid,realCO});
-  },[inputs,rent,zi]);
+const tl=pp+rh;
+const orig=tl*L.pts;const broker=L.bf?tl*L.bf:0;
+const moIntP=(pp*L.pr)/12;const moIntR=(rh*L.rr)/12;const moInt=moIntP+moIntR;
+const pdi=(pp*L.pr+rh*L.rr)/365;const preInt=pdi*15;
+const intRes=L.intRes?moInt*L.intRes:0;
 
-  useEffect(()=>{analyze()},[analyze]);
-  useEffect(()=>{try{localStorage.setItem('brrr_saved',JSON.stringify(saved))}catch{}},[saved]);
+// Lender fees
+const lf=orig+L.sf+L.dp+L.uw+L.proc+L.adm+L.apr+L.insp+broker+preInt+intRes;
 
-  const save=()=>{if(!results||!inputs.address)return;setSaved(p=>[...p,{addr:inputs.address,zip:inputs.zip,verdict:results.v.label,ratio:results.ratio.toFixed(2),co:results.realCO,cf:results.mCF,ts:new Date().toLocaleDateString()}])};
+// Title
+const tIns=pp*.006;const tFees=tIns+150+500;const insPre=ins/2;
+const totClose=lf+tFees+insPre;
 
-  const openComps=(zip)=>{window.open(`https://www.zillow.com/${zip}/sold/`,'_blank')};
+// Holding
+const hInt=moInt*rm;const hIns=(ins/12)*rm;const hTx=(tx/12)*rm;
+const drw=L.drI?L.drI*3:0;const totHold=hInt+hIns+hTx+drw;
 
-  const tierColor=t=>t==="core"?"badge-core":t==="emerging"?"badge-emerging":"badge-watch";
-  const trajColor=t=>t==="Strong"||t==="Improving"?"text-green":t==="Caution"||t==="Early Stage"?"text-amber":"";
+// True all-in
+const tai=pp+rh+ct+totClose+totHold;
+const ratio=av/tai;const mxR=av*L.ltv;
+const pCO=mxR-tai;const rfCl=mxR*.025;const rCO=pCO-rfCl;
+const oop=totClose+totHold;
+const renew=L.renPt?tl*L.renPt:0;
 
-  return React.createElement("div",{className:"container"},
-    // Header
-    React.createElement("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:20,flexWrap:"wrap",gap:8}},
-      React.createElement("div",null,
-        React.createElement("h1",{style:{fontSize:24,fontWeight:700,color:"#1c1917",letterSpacing:"-.02em"}},"BRRR Deal Analyzer"),
-        React.createElement("p",{style:{fontSize:12,color:"#78716c",marginTop:2}},"Hananiah Property Group LLC — Birmingham, AL")
-      ),
-      React.createElement("div",{style:{textAlign:"right"}},
-        React.createElement("div",{style:{fontSize:10,color:"#a8a29e",textTransform:"uppercase",letterSpacing:".05em"}},"Minimum Ratio"),
-        React.createElement("div",{className:"mono",style:{fontSize:22,fontWeight:700,color:"#d97706"}},"1.50x")
-      )
-    ),
+// Cash flow
+const mR=rt(),aG=mR*12,vc=aG*.05,noi=aG-tx-ins-vc;
+const mD=mP(mxR,rr,30),aD=mD*12,aCF=noi-aD,mCF=aCF/12;
+const cL=rCO<0?Math.abs(rCO):0;
+const coc=cL>0?aCF/cL:aCF>0?Infinity:0;
+const cr=av>0?noi/av:0;const eq=av-mxR;
 
-    // Tab Buttons
-    React.createElement("div",{style:{display:"flex",gap:8,marginBottom:16}},
-      ["analyze","compare","saved"].map(t=>
-        React.createElement("button",{key:t,className:"btn "+(tab===t?"btn-dark":"btn-light"),onClick:()=>setTab(t),style:{textTransform:"capitalize"}},t)
-      )
-    ),
+const v=vd(ratio);const rsk=[];
+if(ip.as==="wholesaler")rsk.push("Wholesaler ARV");
+if(ip.rb==="estimate")rsk.push("Rehab estimate only");
+if(ratio>=1.5&&ratio<1.6)rsk.push("Thin — 5% ARV miss breaks it");
+if(rCO<0)rsk.push(f(Math.abs(rCO))+" trapped");
+if(mCF<100)rsk.push("CF < $100/mo");
+if(L.tm<=4)rsk.push("Short term ("+L.tm+"mo)");
+if(L.pr>=.15||L.rr>=.15)rsk.push("High rate — holding costs add up");
 
-    // ANALYZE TAB
-    tab==="analyze"&&React.createElement("div",{className:"grid grid-main"},
-      // Left col
-      React.createElement("div",{style:{display:"flex",flexDirection:"column",gap:16}},
-        // Property Details
-        React.createElement("div",{className:"card"},
-          React.createElement("div",{className:"label",style:{marginBottom:12}},"① Property Details"),
-          React.createElement("div",{style:{display:"flex",flexDirection:"column",gap:10}},
-            React.createElement("div",null,React.createElement("label",{className:"label"},"Address"),React.createElement("input",{className:"input",placeholder:"123 Main St, Birmingham",value:inputs.address,onChange:e=>up("address",e.target.value)})),
-            React.createElement("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}},
-              React.createElement("div",null,React.createElement("label",{className:"label"},"Zip Code"),
-                React.createElement("select",{className:"input",value:inputs.zip,onChange:e=>up("zip",e.target.value)},
-                  React.createElement("optgroup",{label:"Core"},
-                    React.createElement("option",{value:"35211"},"35211 Ensley"),
-                    React.createElement("option",{value:"35205"},"35205 UAB"),
-                    React.createElement("option",{value:"35206"},"35206 East Lake"),
-                    React.createElement("option",{value:"35218"},"35218 Titusville")),
-                  React.createElement("optgroup",{label:"Emerging"},
-                    React.createElement("option",{value:"35212"},"35212 Woodlawn 🔥"),
-                    React.createElement("option",{value:"35208"},"35208 Ensley 🌱"),
-                    React.createElement("option",{value:"35215"},"35215 Center Pt"),
-                    React.createElement("option",{value:"35210"},"35210 Irondale")),
-                  React.createElement("optgroup",{label:"Watch"},
-                    React.createElement("option",{value:"35222"},"35222 Avondale"),
-                    React.createElement("option",{value:"35204"},"35204 Fountain Hts"),
-                    React.createElement("option",{value:"35221"},"35221 Midfield"))
-                )),
-              React.createElement("div",null,React.createElement("label",{className:"label"},"Bedrooms"),
-                React.createElement("select",{className:"input",value:inputs.bedrooms,onChange:e=>up("bedrooms",e.target.value)},
-                  [1,2,3,4].map(n=>React.createElement("option",{key:n,value:n},n+" BR"))))
-            ),
-            React.createElement("div",null,React.createElement("label",{className:"label"},"Sq Ft"),React.createElement("input",{className:"input",type:"number",placeholder:"1,200",value:inputs.sqft,onChange:e=>up("sqft",e.target.value)}))
-          )
-        ),
-        // Zip Intel
-        zi&&React.createElement("div",{className:"card",style:{borderLeft:`4px solid ${zi.tier==="core"?"#059669":zi.tier==="emerging"?"#d97706":"#dc2626"}`}},
-          React.createElement("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}},
-            React.createElement("span",{style:{fontWeight:700,fontSize:13,color:"#44403c"}},inputs.zip+" "+zi.icon),
-            React.createElement("span",{className:"badge "+tierColor(zi.tier)},zi.tier)
-          ),
-          [["Zone",zi.zone],["Area",zi.neighborhood],["Trajectory",zi.trajectory,trajColor(zi.trajectory)],["Median",fmt(zi.median)],["ARV Range",zi.arvRange],["S8 "+inputs.bedrooms+"BR",fmt(rent())+"/mo","text-green"],["Flood",zi.flood]].map(([l,v,c],i)=>
-            React.createElement("div",{key:i,style:{display:"flex",justifyContent:"space-between",padding:"4px 0",fontSize:13}},
-              React.createElement("span",{style:{color:"#78716c"}},l),
-              React.createElement("span",{className:"mono "+(c||""),style:{fontWeight:600,fontSize:12}},v))
-          ),
-          React.createElement("div",{className:"warning-box"},React.createElement("b",null,"Risk: "),zi.risk),
-          React.createElement("div",{className:"note-box"},zi.notes),
-          React.createElement("button",{className:"btn btn-indigo",onClick:()=>openComps(inputs.zip),style:{width:"100%",marginTop:10,padding:"10px"}},"View Comps on Zillow →")
-        ),
-        // Deal Numbers
-        React.createElement("div",{className:"card"},
-          React.createElement("div",{className:"label",style:{marginBottom:12}},"② Deal Numbers"),
-          React.createElement("div",{style:{display:"flex",flexDirection:"column",gap:10}},
-            [["Purchase Price","purchasePrice","65,000"],["Rehab Cost","rehabCost","35,000"],["ARV","arv","130,000"]].map(([l,k,ph])=>
-              React.createElement("div",{key:k},React.createElement("label",{className:"label"},l),
-                React.createElement("div",{className:"dollar-input"},React.createElement("span",null,"$"),
-                  React.createElement("input",{className:"input",type:"number",placeholder:ph,value:inputs[k],onChange:e=>up(k,e.target.value)})))
-            ),
-            React.createElement("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}},
-              React.createElement("div",null,React.createElement("label",{className:"label"},"ARV Source"),
-                React.createElement("select",{className:"input",value:inputs.arvSource,onChange:e=>up("arvSource",e.target.value)},
-                  React.createElement("option",{value:"zillow"},"Zillow/Redfin"),React.createElement("option",{value:"mls"},"MLS"),React.createElement("option",{value:"wholesaler"},"Wholesaler"),React.createElement("option",{value:"other"},"Other"))),
-              React.createElement("div",null,React.createElement("label",{className:"label"},"Rehab Basis"),
-                React.createElement("select",{className:"input",value:inputs.rehabBasis,onChange:e=>up("rehabBasis",e.target.value)},
-                  React.createElement("option",{value:"bid"},"Contractor Bid"),React.createElement("option",{value:"estimate"},"$/SqFt Est"),React.createElement("option",{value:"none"},"None")))
-            ),
-            React.createElement("label",{style:{display:"flex",alignItems:"center",gap:8,padding:"8px 12px",background:"#fef2f2",borderRadius:8,fontSize:12,color:"#991b1b",fontWeight:500}},
-              React.createElement("input",{type:"checkbox",checked:inputs.fears,onChange:e=>up("fears",e.target.checked)}),"Fears Organization ARV"),
-            React.createElement("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}},
-              React.createElement("div",null,React.createElement("label",{className:"label"},"Annual Taxes"),
-                React.createElement("div",{className:"dollar-input"},React.createElement("span",null,"$"),
-                  React.createElement("input",{className:"input",type:"number",placeholder:"1,200",value:inputs.propertyTax,onChange:e=>up("propertyTax",e.target.value)}))),
-              React.createElement("div",null,React.createElement("label",{className:"label"},"Annual Insurance"),
-                React.createElement("div",{className:"dollar-input"},React.createElement("span",null,"$"),
-                  React.createElement("input",{className:"input",type:"number",placeholder:"1,400",value:inputs.insurance,onChange:e=>up("insurance",e.target.value)})))
-            ),
-            React.createElement("div",null,React.createElement("label",{className:"label"},"Refi Rate %"),
-              React.createElement("input",{className:"input",type:"number",step:.1,value:inputs.refiRate,onChange:e=>up("refiRate",e.target.value)}))
-          )
-        )
-      ),
-      // Right col
-      React.createElement("div",{style:{display:"flex",flexDirection:"column",gap:16}},
-        // Deal Killers
-        killers.length>0&&React.createElement("div",{style:{background:"#fef2f2",border:"2px solid #fca5a5",borderRadius:16,padding:20}},
-          React.createElement("h2",{style:{fontSize:16,fontWeight:700,color:"#991b1b",marginBottom:10}},"⛔ DEAL KILLERS"),
-          killers.map((k,i)=>React.createElement("div",{key:i,style:{display:"flex",gap:8,color:"#dc2626",fontSize:13,marginBottom:4}},React.createElement("span",null,"✕"),k)),
-          React.createElement("p",{style:{marginTop:10,fontSize:11,fontWeight:700,color:"#dc2626",textTransform:"uppercase"}},"Resolve before proceeding.")
-        ),
-        // Verdict
-        results&&React.createElement("div",{style:{borderRadius:16,padding:20,border:`2px solid ${results.v.color}30`,background:results.v.bg}},
-          React.createElement("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"flex-start",flexWrap:"wrap",gap:12}},
-            React.createElement("div",null,
-              React.createElement("div",{style:{fontSize:22,fontWeight:700,color:results.v.color}},results.v.label),
-              React.createElement("p",{style:{fontSize:13,color:results.v.color+"cc",marginTop:4}},results.v.desc)),
-            React.createElement("div",{style:{textAlign:"right"}},
-              React.createElement("div",{style:{fontSize:10,color:"#78716c",textTransform:"uppercase"}},"ARV Ratio"),
-              React.createElement("div",{className:"mono",style:{fontSize:32,fontWeight:700,color:results.v.color}},results.ratio.toFixed(2)+"x"),
-              React.createElement("div",{style:{fontSize:10,color:"#78716c"}},"min: 1.50x | strong: 1.60x"))
-          ),
-          React.createElement("div",{style:{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:12,marginTop:16,paddingTop:12,borderTop:`1px solid ${results.v.color}30`}},
-            React.createElement("div",null,React.createElement("div",{style:{fontSize:10,color:"#78716c",textTransform:"uppercase"}},"Real Cash-Out"),
-              React.createElement("div",{className:"mono",style:{fontSize:18,fontWeight:700,color:results.realCO>=0?"#059669":"#dc2626"}},fmt(results.realCO)),
-              React.createElement("div",{style:{fontSize:10,color:"#a8a29e"}},"after hidden costs")),
-            React.createElement("div",null,React.createElement("div",{style:{fontSize:10,color:"#78716c",textTransform:"uppercase"}},"Monthly CF"),
-              React.createElement("div",{className:"mono",style:{fontSize:18,fontWeight:700,color:results.mCF>=0?"#059669":"#dc2626"}},fmt(results.mCF))),
-            React.createElement("div",null,React.createElement("div",{style:{fontSize:10,color:"#78716c",textTransform:"uppercase"}},"Cash-on-Cash"),
-              React.createElement("div",{className:"mono",style:{fontSize:18,fontWeight:700,color:"#059669"}},results.coc===Infinity?"∞":pct(results.coc)))
-          )
-        ),
-        // Pro Forma
-        results&&React.createElement("div",{className:"card"},
-          React.createElement("div",{className:"label",style:{marginBottom:12}},"Pro Forma"),
-          [
-            {l:"Purchase Price",v:fmt(results.pp)},{l:"Rehab Cost",v:fmt(results.rehab)},{l:"Contingency",v:fmt(10000)},{l:"Origination (5%)",v:fmt(results.orig)},
-            {l:"ALL-IN COST",v:fmt(results.allIn),b:1,h:1},{d:1},
-            {l:"ARV",v:fmt(results.arv)},{l:"ARV RATIO",v:results.ratio.toFixed(2)+"x",b:1,h:1,c:results.v.color},{d:1},
-            {l:"Max Refi (75% ARV)",v:fmt(results.maxRefi)},{l:"Paper Cash-Out",v:fmt(results.cashOut),b:1,c:results.cashOut>=0?"#059669":"#dc2626"},
-            {l:"Equity at Refi",v:fmt(results.equity)},{d:1},
-            {l:"⚡ Refi Closing (2.5%)",v:"−"+fmt(results.refiClose)},{l:"⚡ Holding (3 mo)",v:"−"+fmt(results.hold)},{l:"⚡ PM Setup",v:"−$500"},
-            {l:"TOTAL HIDDEN COSTS",v:"−"+fmt(results.totalHid),b:1},
-            {l:"REAL CASH-OUT",v:fmt(results.realCO),b:1,h:1,c:results.realCO>=0?"#059669":"#dc2626"},{d:1},
-            {l:`S8 ${inputs.bedrooms}BR Rent`,v:fmt(results.mRent)+"/mo"},{l:"Annual Gross",v:fmt(results.aGross)},{l:"Vacancy (5%)",v:"−"+fmt(results.vac)},
-            {l:"Taxes",v:"−"+fmt(results.tax)},{l:"Insurance",v:"−"+fmt(results.ins)},{l:"NOI",v:fmt(results.noi),b:1},{d:1},
-            {l:"Monthly Debt Service",v:fmt(results.mDebt)+"/mo"},{l:"MONTHLY CASH FLOW",v:fmt(results.mCF)+"/mo",b:1,h:1,c:results.mCF>=0?"#059669":"#dc2626"},{d:1},
-            {l:"Cash-on-Cash",v:results.coc===Infinity?"∞":pct(results.coc),b:1},{l:"Cap Rate",v:pct(results.capRate)}
-          ].map((r,i)=>{
-            if(r.d)return React.createElement("div",{key:i,className:"divider"});
-            return React.createElement("div",{key:i,className:"row"+(r.h?" row-highlight":"")},
-              React.createElement("span",{style:{fontSize:13,fontWeight:r.b?700:400,color:r.b?"#1c1917":"#57534e"}},r.l),
-              React.createElement("span",{className:"mono",style:{fontSize:13,fontWeight:r.b?700:400,color:r.c||(r.b?"#1c1917":"#57534e")}},r.v))
-          })
-        ),
-        // Risks
-        results&&results.risks.length>0&&React.createElement("div",{className:"card",style:{borderLeft:"4px solid #f59e0b"}},
-          React.createElement("div",{className:"label",style:{color:"#92400e",marginBottom:8}},"Risk Flags"),
-          results.risks.map((r,i)=>React.createElement("div",{key:i,style:{display:"flex",gap:8,fontSize:13,color:"#92400e",marginBottom:4}},React.createElement("span",null,"⚡"),r))
-        ),
-        // Action buttons
-        results&&React.createElement("div",{style:{display:"flex",gap:8,flexWrap:"wrap"}},
-          React.createElement("button",{className:"btn btn-dark",onClick:save},"Save Deal"),
-          React.createElement("button",{className:"btn btn-light",onClick:()=>{up("address","");up("purchasePrice","");up("rehabCost","");up("arv","");up("sqft","");up("propertyTax","");up("insurance","");setResults(null);setKillers([])}},"Clear"),
-          React.createElement("button",{className:"btn btn-indigo",onClick:()=>openComps(inputs.zip),style:{padding:"10px 20px"}},"Zillow Comps →")
-        ),
-        // Empty state
-        !results&&React.createElement("div",{style:{border:"2px dashed #d6d3d1",borderRadius:16,padding:48,textAlign:"center"}},
-          React.createElement("div",{style:{fontSize:40,marginBottom:8}},"🏠"),
-          React.createElement("h3",{style:{fontSize:16,fontWeight:700,color:"#44403c"}},"Enter Deal Numbers"),
-          React.createElement("p",{style:{fontSize:13,color:"#78716c"}},"Fill in purchase price, rehab, and ARV."))
-      )
-    ),
+sR({pp,rh,ct,av,ratio,v,rsk,orig,broker,moInt,pdi,preInt,intRes,lf,tIns,tFees,insPre,totClose,hInt,hIns,hTx,drw,totHold,tai,mxR,pCO,rfCl,rCO,oop,renew,mR,aG,vc,noi,tx,ins,mD,aD,aCF,mCF,coc,cr,eq});
+},[ip,rt,L]);
+useEffect(()=>{calc()},[calc]);
+useEffect(()=>{try{localStorage.setItem('brrr3',JSON.stringify(sv))}catch{}},[sv]);
 
-    // COMPARE TAB
-    tab==="compare"&&React.createElement("div",{className:"card"},
-      React.createElement("div",{className:"label",style:{marginBottom:12}},"All Target Zip Codes — Sorted by S8 3BR Rent"),
-      React.createElement("div",{style:{overflowX:"auto"}},
-        React.createElement("table",null,
-          React.createElement("thead",null,React.createElement("tr",null,
-            ["Zip","Tier","Neighborhood","Zone","3BR S8","Median","ARV Range","",""].map((h,i)=>
-              React.createElement("th",{key:i,style:i>=4?{textAlign:"right"}:{}},h)))),
-          React.createElement("tbody",null,
-            Object.entries(ZIP_DATA).sort((a,b)=>b[1].rent3-a[1].rent3).map(([z,d])=>
-              React.createElement("tr",{key:z,onClick:()=>{up("zip",z);setTab("analyze")},style:{cursor:"pointer",background:inputs.zip===z?"#fefce8":""}},
-                React.createElement("td",{className:"mono",style:{fontWeight:700}},z),
-                React.createElement("td",null,React.createElement("span",{className:"badge "+tierColor(d.tier)},d.tier)),
-                React.createElement("td",{style:{maxWidth:140,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}},d.neighborhood),
-                React.createElement("td",{style:{textAlign:"center",fontWeight:700}},d.zone),
-                React.createElement("td",{className:"mono text-green",style:{textAlign:"right",fontWeight:700}},fmt(d.rent3)),
-                React.createElement("td",{className:"mono",style:{textAlign:"right"}},fmt(d.median)),
-                React.createElement("td",null,d.arvRange),
-                React.createElement("td",{style:{textAlign:"center"}},d.icon),
-                React.createElement("td",null,React.createElement("button",{className:"btn btn-indigo",onClick:e=>{e.stopPropagation();openComps(z)}},"Comps"))
-              )
-            ))
-        )
-      ),
-      React.createElement("p",{style:{marginTop:12,fontSize:11,color:"#a8a29e"}},"Tap any row to load into analyzer. Comps opens Zillow sold listings.")
-    ),
+const save=()=>{if(!rs||!ip.ad)return;sS(p=>[...p,{a:ip.ad,z:ip.zp,ln:L.sh,vd:rs.v.l,rt:rs.ratio.toFixed(2),co:rs.rCO,cf:rs.mCF,oop:rs.oop,d:new Date().toLocaleDateString()}])};
+const oc=z=>window.open('https://www.zillow.com/'+z+'/sold/','_blank');
+const tc=t=>t==="core"?"bc":t==="emerging"?"be":"bw";
+const R=(l,v,o={})=>React.createElement("div",{className:"r"+(o.h?" rh":"")},React.createElement("span",{style:{fontWeight:o.b?700:400,color:o.b?"#1c1917":"#57534e"}},l),React.createElement("span",{className:"m",style:{fontWeight:o.b?700:400,color:o.c||(o.b?"#1c1917":"#57534e")}},v));
 
-    // SAVED TAB
-    tab==="saved"&&React.createElement("div",{className:"card"},
-      React.createElement("div",{className:"label",style:{marginBottom:12}},"Saved Deals ("+saved.length+")"),
-      saved.length===0?React.createElement("p",{style:{fontSize:13,color:"#78716c",textAlign:"center",padding:32}},"No saved deals yet. Analyze a deal and tap Save."):
-      React.createElement(React.Fragment,null,
-        React.createElement("div",{style:{overflowX:"auto"}},
-          React.createElement("table",null,
-            React.createElement("thead",null,React.createElement("tr",null,
-              ["Address","Zip","Verdict","Ratio","Cash-Out","Monthly CF","Date"].map((h,i)=>
-                React.createElement("th",{key:i,style:i>=3?{textAlign:"right"}:{}},h)))),
-            React.createElement("tbody",null,
-              saved.map((d,i)=>React.createElement("tr",{key:i},
-                React.createElement("td",{style:{fontWeight:500}},d.addr),
-                React.createElement("td",null,d.zip),
-                React.createElement("td",null,d.verdict),
-                React.createElement("td",{className:"mono",style:{textAlign:"right",fontWeight:700}},d.ratio+"x"),
-                React.createElement("td",{className:"mono",style:{textAlign:"right",color:d.co>=0?"#059669":"#dc2626"}},fmt(d.co)),
-                React.createElement("td",{className:"mono",style:{textAlign:"right",color:d.cf>=0?"#059669":"#dc2626"}},fmt(d.cf)),
-                React.createElement("td",{style:{fontSize:11,color:"#a8a29e"}},d.ts)
-              ))
-            )
-          )
-        ),
-        React.createElement("button",{className:"btn btn-light",onClick:()=>setSaved([]),style:{marginTop:12}},"Clear All Saved")
-      )
-    )
-  );
-}
+return React.createElement("div",{className:"mx"},
+React.createElement("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14,flexWrap:"wrap",gap:6}},
+React.createElement("div",null,React.createElement("h1",{style:{fontSize:20,fontWeight:700,letterSpacing:"-.02em"}},"BRRR Deal Analyzer"),React.createElement("p",{style:{fontSize:10,color:"#78716c"}},"Hananiah Property Group — Birmingham, AL")),
+React.createElement("div",{className:"m",style:{fontSize:18,fontWeight:700,color:"#d97706"}},"1.50x")),
 
+React.createElement("div",{style:{display:"flex",gap:5,marginBottom:12,flexWrap:"wrap"}},
+["analyze","lenders","compare","saved"].map(t=>React.createElement("button",{key:t,className:"btn "+(tb===t?"btn-d":"btn-l"),onClick:()=>sT(t),style:{textTransform:"capitalize"}},t))),
+
+// ANALYZE
+tb==="analyze"&&React.createElement("div",{className:"gr gm"},
+React.createElement("div",null,
+// Property
+React.createElement("div",{className:"card"},React.createElement("div",{className:"lbl"},"① Property"),
+React.createElement("input",{className:"inp",placeholder:"Address",value:ip.ad,onChange:e=>up("ad",e.target.value),style:{marginBottom:6}}),
+React.createElement("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:5}},
+React.createElement("select",{className:"inp",value:ip.zp,onChange:e=>up("zp",e.target.value)},
+React.createElement("optgroup",{label:"Core"},["35211","35205","35206","35218"].map(z=>React.createElement("option",{key:z,value:z},z+" "+Z[z].n.split("/")[0]))),
+React.createElement("optgroup",{label:"Emerging"},["35212","35208","35215","35210"].map(z=>React.createElement("option",{key:z,value:z},z+" "+Z[z].n.split("/")[0]))),
+React.createElement("optgroup",{label:"Watch"},["35222","35204","35221"].map(z=>React.createElement("option",{key:z,value:z},z+" "+Z[z].n.split("/")[0])))),
+React.createElement("select",{className:"inp",value:ip.br,onChange:e=>up("br",e.target.value)},[1,2,3,4].map(n=>React.createElement("option",{key:n,value:n},n+"BR"))))),
+
+// Zip
+zi&&React.createElement("div",{className:"card",style:{borderLeft:"4px solid "+(zi.t==="core"?"#059669":zi.t==="emerging"?"#d97706":"#dc2626")}},
+React.createElement("div",{style:{display:"flex",justifyContent:"space-between",marginBottom:6}},
+React.createElement("span",{style:{fontWeight:700,fontSize:13}},ip.zp+" "+zi.i),React.createElement("span",{className:"badge "+tc(zi.t)},zi.t)),
+[["S8 "+ip.br+"BR",f(rt())+"/mo","g"],["Median",f(zi.md)],["ARV",zi.ar]].map(([l,v,c],i)=>React.createElement("div",{key:i,style:{display:"flex",justifyContent:"space-between",padding:"2px 0",fontSize:12}},React.createElement("span",{style:{color:"#78716c"}},l),React.createElement("span",{className:"m "+(c||""),style:{fontWeight:600}},v))),
+React.createElement("div",{className:"warn"},zi.rk),
+React.createElement("button",{className:"btn btn-i",onClick:()=>oc(ip.zp),style:{width:"100%",marginTop:6}},"Zillow Comps →")),
+
+// Lender
+React.createElement("div",{className:"card"},React.createElement("div",{className:"lbl"},"② Lender"),
+React.createElement("select",{className:"inp",value:ip.ln,onChange:e=>up("ln",e.target.value),style:{marginBottom:6}},
+Object.entries(LL).map(([k,l])=>React.createElement("option",{key:k,value:k},l.nm))),
+React.createElement("div",{style:{fontSize:10,color:"#78716c",padding:6,background:"#fafaf9",borderRadius:6}},L.nt)),
+
+// Numbers
+React.createElement("div",{className:"card"},React.createElement("div",{className:"lbl"},"③ Numbers"),
+[["Purchase","pp","65,000"],["Rehab","rh","35,000"],["ARV","av","130,000"],["Contingency","ct","10,000"]].map(([l,k,ph])=>
+React.createElement("div",{key:k,style:{marginBottom:5}},React.createElement("label",{className:"lbl"},l),
+React.createElement("div",{className:"di"},React.createElement("span",null,"$"),React.createElement("input",{className:"inp",type:"number",placeholder:ph,value:ip[k],onChange:e=>up(k,e.target.value)})))),
+React.createElement("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:5,marginBottom:5}},
+React.createElement("div",null,React.createElement("label",{className:"lbl"},"ARV Source"),React.createElement("select",{className:"inp",value:ip.as,onChange:e=>up("as",e.target.value)},["zillow","mls","wholesaler","other"].map(v=>React.createElement("option",{key:v,value:v},v)))),
+React.createElement("div",null,React.createElement("label",{className:"lbl"},"Rehab Basis"),React.createElement("select",{className:"inp",value:ip.rb,onChange:e=>up("rb",e.target.value)},[["bid","Bid"],["estimate","Est"],["none","None"]].map(([v,l])=>React.createElement("option",{key:v,value:v},l))))),
+React.createElement("label",{style:{display:"flex",gap:5,padding:6,background:"#fef2f2",borderRadius:6,fontSize:10,color:"#991b1b",fontWeight:600,marginBottom:5}},
+React.createElement("input",{type:"checkbox",checked:ip.fe,onChange:e=>up("fe",e.target.checked)}),"Fears Organization ARV"),
+React.createElement("div",{style:{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:5}},
+React.createElement("div",null,React.createElement("label",{className:"lbl"},"Tax/yr"),React.createElement("div",{className:"di"},React.createElement("span",null,"$"),React.createElement("input",{className:"inp",type:"number",placeholder:"1200",value:ip.tx,onChange:e=>up("tx",e.target.value)}))),
+React.createElement("div",null,React.createElement("label",{className:"lbl"},"Ins/yr"),React.createElement("div",{className:"di"},React.createElement("span",null,"$"),React.createElement("input",{className:"inp",type:"number",placeholder:"1400",value:ip.in_,onChange:e=>up("in_",e.target.value)}))),
+React.createElement("div",null,React.createElement("label",{className:"lbl"},"Rehab Mo"),React.createElement("input",{className:"inp",type:"number",value:ip.rm,onChange:e=>up("rm",e.target.value)}))))),
+
+// RIGHT
+React.createElement("div",null,
+kl.length>0&&React.createElement("div",{style:{background:"#fef2f2",border:"2px solid #fca5a5",borderRadius:12,padding:14,marginBottom:12}},
+React.createElement("div",{style:{fontSize:14,fontWeight:700,color:"#991b1b",marginBottom:6}},"⛔ DEAL KILLERS"),
+kl.map((k,i)=>React.createElement("div",{key:i,style:{fontSize:12,color:"#dc2626"}},"✕ "+k))),
+
+rs&&React.createElement("div",{style:{borderRadius:12,padding:14,border:"2px solid "+rs.v.c+"30",background:rs.v.bg,marginBottom:12}},
+React.createElement("div",{style:{display:"flex",justifyContent:"space-between",flexWrap:"wrap",gap:6}},
+React.createElement("div",null,React.createElement("div",{style:{fontSize:18,fontWeight:700,color:rs.v.c}},rs.v.l),React.createElement("p",{style:{fontSize:11,color:rs.v.c+"cc"}},rs.v.d)),
+React.createElement("div",{style:{textAlign:"right"}},React.createElement("div",{className:"m",style:{fontSize:26,fontWeight:700,color:rs.v.c}},rs.ratio.toFixed(2)+"x"),React.createElement("div",{style:{fontSize:9,color:"#78716c"}},L.sh))),
+React.createElement("div",{style:{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:6,marginTop:10,paddingTop:8,borderTop:"1px solid "+rs.v.c+"30"}},
+[["Real Cash-Out",f(rs.rCO),rs.rCO>=0?"g":"rd"],["Monthly CF",f(rs.mCF),rs.mCF>=0?"g":"rd"],["Total OOP",f(rs.oop),"am"],["CoC",rs.coc===Infinity?"∞":pc(rs.coc),"g"]].map(([l,v,c],i)=>
+React.createElement("div",{key:i},React.createElement("div",{style:{fontSize:8,color:"#78716c",textTransform:"uppercase"}},l),React.createElement("div",{className:"m "+c,style:{fontSize:14,fontWeight:700}},v))))),
+
+// Closing costs
+rs&&React.createElement("div",{className:"card"},React.createElement("div",{className:"lbl blue"},"💰 Closing Costs — "+L.sh),
+React.createElement("div",{style:{fontSize:10,fontWeight:700,color:"#78716c",marginBottom:3}},"LENDER FEES"),
+R("Origination ("+Math.round(L.pts*100)+"pts)",f2(rs.orig)),
+rs.broker?R("Broker ("+Math.round(L.bf*100)+"%)",f2(rs.broker)):null,
+L.sf?R("Service Fee",f2(L.sf)):null,L.dp?R("Doc Prep",f2(L.dp)):null,
+L.uw?R("Underwriting",f2(L.uw)):null,L.proc?R("Processing",f2(L.proc)):null,
+L.adm?R("Admin",f2(L.adm)):null,L.apr?R("Appraisal",f2(L.apr)):null,
+L.insp?R("Inspection",f2(L.insp)):null,
+R("Prepaid Int (~15d)",f2(rs.preInt)),
+rs.intRes?R("Interest Reserves ("+L.intRes+"mo)",f2(rs.intRes)):null,
+R("LENDER SUBTOTAL",f(rs.lf),{b:1,h:1}),
+React.createElement("div",{className:"dv"}),
+React.createElement("div",{style:{fontSize:10,fontWeight:700,color:"#78716c",marginBottom:3}},"TITLE / ESCROW"),
+R("Title Insurance",f2(rs.tIns)),R("Recording","$150"),R("Closing Fee","$500"),R("Ins Prepaid (6mo)",f2(rs.insPre)),
+R("TITLE SUBTOTAL",f(rs.tFees+rs.insPre),{b:1,h:1}),
+React.createElement("div",{className:"dv"}),
+R("TOTAL CLOSING",f(rs.totClose),{b:1,h:1,c:"#4f46e5"})),
+
+// Holding
+rs&&React.createElement("div",{className:"card"},React.createElement("div",{className:"lbl am"},"⏱️ Holding ("+ip.rm+"mo)"),
+R("Monthly Payment",f2(rs.moInt)+"/mo"),
+R("Interest ("+ip.rm+"mo)",f(rs.hInt)),R("Insurance",f(rs.hIns)),R("Taxes",f(rs.hTx)),
+rs.drw?R("Draw Inspections",f(rs.drw)):null,
+React.createElement("div",{className:"dv"}),
+R("TOTAL HOLDING",f(rs.totHold),{b:1,h:1,c:"#d97706"}),
+React.createElement("div",{className:"dv"}),
+R("TOTAL OOP (Close + Hold)",f(rs.oop),{b:1,h:1,c:"#dc2626"}),
+rs.renew?React.createElement("div",{className:"warn"},"Extension: "+f(rs.renew)+"/3mo"):null),
+
+// Pro forma
+rs&&React.createElement("div",{className:"card"},React.createElement("div",{className:"lbl"},"Pro Forma"),
+R("Purchase",f(rs.pp)),R("Rehab",f(rs.rh)),R("Contingency",f(rs.ct)),R("Closing",f(rs.totClose)),R("Holding",f(rs.totHold)),
+R("TRUE ALL-IN",f(rs.tai),{b:1,h:1}),React.createElement("div",{className:"dv"}),
+R("ARV",f(rs.av)),R("RATIO",rs.ratio.toFixed(2)+"x",{b:1,h:1,c:rs.v.c}),React.createElement("div",{className:"dv"}),
+R("Max Refi ("+Math.round(L.ltv*100)+"%)",f(rs.mxR)),R("Paper Cash-Out",f(rs.pCO),{c:rs.pCO>=0?"#059669":"#dc2626"}),
+R("Refi Close (2.5%)","-"+f(rs.rfCl)),R("REAL CASH-OUT",f(rs.rCO),{b:1,h:1,c:rs.rCO>=0?"#059669":"#dc2626"}),
+React.createElement("div",{className:"dv"}),
+R("S8 Rent",f(rs.mR)+"/mo"),R("NOI",f(rs.noi)),R("Debt",f(rs.mD)+"/mo"),
+R("CASH FLOW",f(rs.mCF)+"/mo",{b:1,h:1,c:rs.mCF>=0?"#059669":"#dc2626"}),
+R("Cap Rate",pc(rs.cr)),R("CoC",rs.coc===Infinity?"∞":pc(rs.coc),{b:1})),
+
+rs&&rs.rsk.length>0&&React.createElement("div",{className:"card",style:{borderLeft:"4px solid #f59e0b"}},
+React.createElement("div",{className:"lbl am"},"Risks"),rs.rsk.map((r,i)=>React.createElement("div",{key:i,style:{fontSize:11,color:"#92400e"}},"⚡ "+r))),
+
+rs&&React.createElement("div",{style:{display:"flex",gap:5,marginBottom:12}},
+React.createElement("button",{className:"btn btn-d",onClick:save},"Save"),
+React.createElement("button",{className:"btn btn-l",onClick:()=>{["ad","pp","rh","av","sf","tx","in_"].forEach(k=>up(k,""));sR(null);sK([])}},"Clear")),
+
+!rs&&React.createElement("div",{style:{border:"2px dashed #d6d3d1",borderRadius:12,padding:30,textAlign:"center"}},
+React.createElement("div",{style:{fontSize:30}},"🏠"),React.createElement("p",{style:{fontSize:12,color:"#78716c",marginTop:6}},"Enter numbers to analyze.")))),
+
+// LENDERS
+tb==="lenders"&&React.createElement("div",{className:"gr",style:{gridTemplateColumns:"repeat(auto-fit,minmax(260px,1fr))"}},
+Object.entries(LL).map(([k,l])=>React.createElement("div",{key:k,className:"lc"+(ip.ln===k?" act":""),onClick:()=>{up("ln",k);sT("analyze")}},
+React.createElement("h3",{style:{fontSize:14,fontWeight:700,marginBottom:6}},l.nm),
+[["Rate",l.sp?Math.round(l.pr*100)+"/"+Math.round(l.rr*100)+"%":Math.round(l.pr*100)+"%"],
+["Points",Math.round(l.pts*100)+"%"+(l.bf?" +"+Math.round(l.bf*100)+"% broker":"")],
+["Term",l.tm+"mo"],["LTV",Math.round(l.ltv*100)+"%"],
+["Fees","$"+(l.sf+l.dp+l.uw+l.proc+l.adm+l.apr+l.insp)],
+["Down Pmt",l.noDp?"NONE":"Standard"],
+["Rehab",l.rehUp?"100% upfront":l.rehAdv?Math.round(l.rehAdv*100)+"% at close":"Draws"]
+].map(([a,b],i)=>React.createElement("div",{key:i,style:{display:"flex",justifyContent:"space-between",fontSize:11,padding:"2px 0",borderBottom:"1px solid #f5f5f4"}},
+React.createElement("span",{style:{color:"#78716c"}},a),React.createElement("span",{className:"m",style:{fontWeight:600}},b))),
+React.createElement("div",{style:{fontSize:10,color:"#78716c",marginTop:6,padding:5,background:"#fafaf9",borderRadius:6}},l.nt)))),
+
+// COMPARE
+tb==="compare"&&React.createElement("div",{className:"card"},React.createElement("div",{className:"lbl"},"Zip Codes by S8 3BR Rent"),
+React.createElement("div",{style:{overflowX:"auto"}},React.createElement("table",null,
+React.createElement("thead",null,React.createElement("tr",null,["Zip","Tier","Area","Zone","3BR","Median",""].map((h,i)=>React.createElement("th",{key:i},h)))),
+React.createElement("tbody",null,Object.entries(Z).sort((a,b)=>b[1].r3-a[1].r3).map(([z,d])=>React.createElement("tr",{key:z,onClick:()=>{up("zp",z);sT("analyze")},style:{cursor:"pointer",background:ip.zp===z?"#fffbeb":""}},
+React.createElement("td",{className:"m",style:{fontWeight:700}},z),
+React.createElement("td",null,React.createElement("span",{className:"badge "+tc(d.t)},d.t)),
+React.createElement("td",null,d.n),React.createElement("td",{style:{textAlign:"center",fontWeight:700}},d.z),
+React.createElement("td",{className:"m g",style:{fontWeight:700}},f(d.r3)),
+React.createElement("td",{className:"m"},f(d.md)),
+React.createElement("td",null,React.createElement("button",{className:"btn btn-i",onClick:e=>{e.stopPropagation();oc(z)}},"Comps"))))))),
+React.createElement("p",{style:{fontSize:9,color:"#a8a29e",marginTop:6}},"Tap row → analyzer")),
+
+// SAVED
+tb==="saved"&&React.createElement("div",{className:"card"},React.createElement("div",{className:"lbl"},"Saved ("+sv.length+")"),
+sv.length===0?React.createElement("p",{style:{fontSize:11,color:"#78716c",textAlign:"center",padding:20}},"None yet."):
+React.createElement(React.Fragment,null,React.createElement("div",{style:{overflowX:"auto"}},React.createElement("table",null,
+React.createElement("thead",null,React.createElement("tr",null,["Addr","Zip","Lender","Ratio","Cash-Out","CF","OOP"].map((h,i)=>React.createElement("th",{key:i},h)))),
+React.createElement("tbody",null,sv.map((d,i)=>React.createElement("tr",{key:i},
+React.createElement("td",{style:{fontWeight:500}},d.a),React.createElement("td",null,d.z),React.createElement("td",null,d.ln),
+React.createElement("td",{className:"m",style:{fontWeight:700}},d.rt+"x"),
+React.createElement("td",{className:"m",style:{color:d.co>=0?"#059669":"#dc2626"}},f(d.co)),
+React.createElement("td",{className:"m",style:{color:d.cf>=0?"#059669":"#dc2626"}},f(d.cf)),
+React.createElement("td",{className:"m am"},f(d.oop))))))),
+React.createElement("button",{className:"btn btn-l",onClick:()=>sS([]),style:{marginTop:8}},"Clear")))
+);}
 ReactDOM.render(React.createElement(App),document.getElementById("root"));
 </script>
-<script>
-if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{})}
-</script>
-</body>
-</html>
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{})}</script>
+</body></html>

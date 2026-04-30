@@ -2,7 +2,7 @@
   "name": "BRRR Deal Analyzer",
   "short_name": "BRRR",
   "description": "Hananiah Property Group — Birmingham BRRR Deal Analyzer",
-  "start_url": "/index.html",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#fafaf9",
   "theme_color": "#292524",

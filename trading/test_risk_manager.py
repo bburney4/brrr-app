@@ -156,6 +156,32 @@ class TestExposureCaps(unittest.TestCase):
         self.assertIn("minimum", decision["reason"])
 
 
+class TestAvailableCash(unittest.TestCase):
+    """Spot: equity includes coins you hold, cash is what you can actually spend."""
+
+    def test_cash_caps_the_trade(self):
+        risk = build()
+        sizing = risk.approve_trade(10_000, 100.0, 95.0, "ETH", {}, available_cash=1_200.0)["sizing"]
+        self.assertAlmostEqual(sizing["notional"], 1_200.0)
+        self.assertEqual(sizing["capped_by"], "available_cash")
+
+    def test_no_cash_rejects(self):
+        risk = build()
+        decision = risk.approve_trade(10_000, 100.0, 95.0, "ETH", {}, available_cash=0.0)
+        self.assertFalse(decision["approved"])
+        self.assertIn("spendable balance", decision["reason"])
+
+    def test_ample_cash_does_not_bind(self):
+        risk = build()
+        sizing = risk.approve_trade(10_000, 100.0, 95.0, "ETH", {}, available_cash=9_000.0)["sizing"]
+        self.assertEqual(sizing["capped_by"], "risk_per_trade")
+
+    def test_omitting_cash_keeps_the_old_behaviour(self):
+        risk = build()
+        sizing = risk.approve_trade(10_000, 100.0, 95.0, "ETH", {})["sizing"]
+        self.assertAlmostEqual(sizing["notional"], 2000.0)
+
+
 class TestInputValidation(unittest.TestCase):
     def test_stop_inside_the_noise_band_is_rejected(self):
         risk = build()

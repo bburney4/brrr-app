@@ -432,12 +432,19 @@ class RiskManager:
         stop_price: float,
         symbol: str,
         open_positions: Optional[Dict[str, float]] = None,
+        available_cash: Optional[float] = None,
     ) -> Dict[str, object]:
         """
         Decide whether to take a trade and at what size.
 
         open_positions maps symbol -> current notional in USD (absolute value;
         a short's notional counts the same as a long's for exposure purposes).
+
+        available_cash caps the trade at spendable balance. On spot this is not
+        optional in practice: equity includes coins you already hold, so the
+        percentage caps alone will happily approve a buy larger than the cash
+        you have left. Leave it None on margin or futures, where buying power
+        is not the same as cash.
 
         Returns:
             {"approved": bool, "reason": str, "sizing": {...} | None, "risk": {...}}
@@ -499,6 +506,15 @@ class RiskManager:
                 f"with {_money(total_open)} already open",
             ),
         ]
+
+        if available_cash is not None:
+            limits.append(
+                (
+                    "available_cash",
+                    float(available_cash),
+                    f"spendable balance {_money(available_cash)}",
+                )
+            )
 
         for group in cfg.groups_for(symbol):
             members = cfg.correlated_groups[group]

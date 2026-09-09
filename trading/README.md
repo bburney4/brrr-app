@@ -2,14 +2,18 @@
 
 Position sizing, exposure caps and kill-switches for a Kraken Futures perpetuals bot.
 
-**Setting it up against a real account: [INSTALL.md](INSTALL.md).**
+**Setting it up against a real account: [INSTALL_SPOT.md](INSTALL_SPOT.md)**
+(spot crypto — the normal case). For perpetual futures, [INSTALL.md](INSTALL.md).
 
-- `risk_manager.py` — the risk engine. Standard library only (`sqlite3`), no exchange dependency.
-- `kraken_adapter.py` — Kraken Futures integration (python-kraken-sdk).
-- `preflight.py` — verifies account, permissions and payload shapes. Places no orders.
-- `equity_check.py` — hourly kill-switch check for cron/systemd.
-- `example_usage.py` — how to wire it into a bot, plus a runnable offline demo.
-- `test_*.py` — 55 unit tests, no network.
+| File | Role |
+|---|---|
+| `risk_manager.py` | The risk engine. Standard library only, no exchange dependency. |
+| `kraken_spot_adapter.py` | **Kraken Spot** integration — buying and holding coins. |
+| `preflight_spot.py` | Verifies your spot account end to end. Places no orders. |
+| `example_spot.py` | Spot wiring to copy from. |
+| `equity_check.py` | Hourly kill-switch check for cron/systemd (spot or futures). |
+| `kraken_adapter.py`, `preflight.py`, `example_usage.py` | The same, for perpetual futures. |
+| `test_*.py` | 88 unit tests, no network. |
 
 ```bash
 cd trading

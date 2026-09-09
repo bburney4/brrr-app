@@ -1,4 +1,12 @@
-# Installing on Kraken Futures
+# Installing on Kraken
+
+**Trading spot crypto? Read [INSTALL_SPOT.md](INSTALL_SPOT.md) instead — that is
+the normal case.** This file covers Kraken *Futures* perpetuals, which is a
+different account, different keys, and leverage you probably do not want.
+
+---
+
+# Installing on Kraken Futures (perpetuals)
 
 End-to-end setup: account, keys, dependencies, verification, and the wiring that
 replaces the placeholder functions in `example_usage.py`.
@@ -240,4 +248,4 @@ It exits `2` when halted, so cron emails you and systemd marks the unit failed.
 | `preflight.py` | Verify account, permissions and payload shapes. No orders. |
 | `equity_check.py` | Hourly kill-switch check for cron/systemd. |
 | `example_usage.py` | Wiring example with a runnable offline demo. |
-| `test_*.py` | 55 tests, no network: `python3 -m unittest -v` |
+| `test_*.py` | 88 tests, no network: `python3 -m unittest -v` |

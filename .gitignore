@@ -1,0 +1,6 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Local risk state (SQLite) — never commit live account state
+trading/*.db

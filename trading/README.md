@@ -2,13 +2,18 @@
 
 Position sizing, exposure caps and kill-switches for a Kraken Futures perpetuals bot.
 
-- `risk_manager.py` — the module. Standard library only (`sqlite3`), no exchange dependency.
-- `example_usage.py` — how to wire it into a bot, plus a runnable demo.
-- `test_risk_manager.py` — 31 unit tests, no network.
+**Setting it up against a real account: [INSTALL.md](INSTALL.md).**
+
+- `risk_manager.py` — the risk engine. Standard library only (`sqlite3`), no exchange dependency.
+- `kraken_adapter.py` — Kraken Futures integration (python-kraken-sdk).
+- `preflight.py` — verifies account, permissions and payload shapes. Places no orders.
+- `equity_check.py` — hourly kill-switch check for cron/systemd.
+- `example_usage.py` — how to wire it into a bot, plus a runnable offline demo.
+- `test_*.py` — 55 unit tests, no network.
 
 ```bash
 cd trading
-python3 example_usage.py      # demo
+python3 example_usage.py      # offline demo, no credentials needed
 python3 -m unittest -v        # tests
 ```
 
